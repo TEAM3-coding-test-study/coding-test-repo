@@ -7,7 +7,7 @@
  * 위와같은 로직을 문자열을 회전해가면서 처리해야됨
  */
 
-const str = "}}}";
+const str = "}]()[{";
 
 const rotateStr = (str) => {
   const temp = str[0];
@@ -18,38 +18,33 @@ const rotateStr = (str) => {
 };
 
 const rightDecider = (str) => {
-  const smallStack = [];
-  const mediumStack = [];
-  const largeStack = [];
+  const stack = [];
 
   for (let i = 0; i < str.length; i++) {
     switch (str[i]) {
       case "(":
-        smallStack.push("(");
-        break;
-      case ")":
-        if (smallStack.length === 0) return false;
-        else smallStack.pop();
+        stack.push("(");
         break;
       case "{":
-        mediumStack.push("{");
-        break;
-      case "}":
-        if (mediumStack.length === 0) return false;
-        else mediumStack.pop();
+        stack.push("{");
         break;
       case "[":
-        largeStack.push("[");
+        stack.push("[");
         break;
+      case ")":
+        if (stack.pop() === "(") continue;
+        else return false;
+      case "}":
+        if (stack.pop() === "{") continue;
+        else return false;
       case "]":
-        if (largeStack.length === 0) return false;
-        else largeStack.pop();
-        break;
+        if (stack.pop() === "[") continue;
+        else return false;
     }
   }
+  if (stack.length !== 0) return false;
 
-  if (smallStack.length === 0 && mediumStack.length === 0 && largeStack.length === 0) return true;
-  else return false;
+  return true;
 };
 
 const solution = (str) => {
