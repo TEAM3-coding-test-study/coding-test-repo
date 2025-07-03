@@ -1,22 +1,28 @@
 function solution(N, stages) {
-    var answer = [];
-    
+    // var answer = [];
+
     const failCal = new Array(N).fill(0);
-    
+    const stageIndex = [...new Array(N)].map((_, i)=> i+1)
+    console.log(stageIndex)
     stages.sort((a,b)=>a-b)
-    console.log(stages)
+
+    const stageSet = [...new Set(stages)];
+    let totalPlayer = stages.length;
     
-    for(const[i, stage] of stages.entries()){
-        failCal[stage] += 1;
-        if(i+1 < stages.length && stages[i+1] > stage){
-            console.log("다음 스테이지 등장", stages[i+1] ,">", stage)
-            console.log("현재 failCal[",stage,"] : ", failCal[stage])
-            console.log("stages.length - i = ", stages.length - i)
-            failCal[stage] = failCal[stage] / (stages.length - i)
+    for(const[i, stage] of stageSet.entries()){
+        if(stage <= N){ 
+            const a = stages.filter((s) => s === stage).length
+            const b = totalPlayer
+            console.log(a, b)
+            failCal[stage-1] = a/b;
+            totalPlayer -= a;
         }
     }
-    
+        
     console.log(failCal)
+    
+    const result = Object.entries(failCal).sort((a, b)=> b[1] - a[1])
+    const answer = result.map((v) => Number(v[0]) + 1);
     
     return answer;
 }
