@@ -1,3 +1,4 @@
+// 책의 정답 버전
 function solution(s) {
   const n = s.length;
   let answer = 0;
