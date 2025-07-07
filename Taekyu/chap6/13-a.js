@@ -16,6 +16,7 @@ const solution = (board, moves) => {
     for (let j = 0; j < board.length; j++) {
       const targetData = board[j][posNum];
       if (targetData === 0) continue;
+      // 타겟 데이터가 0이면 아이템이 게임화면에 없다는 뜻이므로 다음 행으로 넘어감
       else {
         if (bracket.length === 0) {
           bracket.push(targetData);
