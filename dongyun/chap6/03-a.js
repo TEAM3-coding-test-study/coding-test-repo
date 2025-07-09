@@ -3,27 +3,33 @@ const test2 = "}]()[{";
 const test3 = "[)(]";
 const test4 = "}}}";
 
-function solution(s) {
-  var answer = -1;
-
+export default function solution(s) {
+  var answer = 0;
   const arr = s.split("");
   const arr2 = [...arr, ...arr];
-  const stack = [];
 
   let start = 0;
-  let end = arr.length - 1;
 
-  while (start < arr.length - 1) {
-    for (let i = start; i <= end; i++) {
-      console.log(arr2[i]);
-      if (arr2[i] === ("(" || "{" || "[")) {
+  while (start < arr.length) {
+    let isFail = false;
+    let stack = [];
+
+    if (arr2[start] === ")" || arr2[start] === "}" || arr2[start] === "]") isFail = true;
+
+    for (let i = start; i < start + arr.length; i++) {
+      if (arr2[i] === "(" || arr2[i] === "{" || arr2[i] === "[") {
         stack.push(arr2[i]);
-      } else stack.pop();
+      }
+      else if (stack.length === 0) isFail = true;
+      else {
+        const top = stack.pop()
+        if (top.codePointAt(0) + 1 !== arr2[i].codePointAt(0) && top.codePointAt(0) + 2 !== arr2[i].codePointAt(0))
+          isFail = true
+      }
     }
-    if (stack.length === 0) answer += 1;
+    if (stack.length === 0 && !isFail) { console.log("start:", start, "length:", stack.length, "isFail:", isFail); answer += 1; }
     if (start < arr.length) {
       start += 1;
-      end += 1;
     }
   }
   return answer;
