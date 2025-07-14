@@ -19,7 +19,6 @@ function solution(N, stages) {
   }
 
   var temp = [...new Set(fail)].sort((a, b) => b - a);
-  console.log(fail);
   for (let i of temp) {
     fail.forEach((j, idx) => {
       if (i === j) {
