@@ -1,4 +1,5 @@
-
+// 큐를 안쓰고 배열로 처리해보려 했지만, 실패!
+// 이미 없어진 사람에 대해 시도하는 경우의 처리가 복잡한 듯
 export default function solution(N, K){
     let answer = 0;
 
