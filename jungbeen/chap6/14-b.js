@@ -10,7 +10,7 @@ function solution(n, k, cmd) {
   for (let c of cmd) {
     let move = c[0];
     if (move === "D" || move === "U") {
-      let offset = +c[2];
+      let offset = +c.split(" ")[1];
       let dir = move === "D" ? 1 : -1;
       while (offset > 0) {
         cur += dir;
@@ -41,10 +41,15 @@ function solution(n, k, cmd) {
     console.log(deleted);
   }
 
-  for (let i of li) {
-    if (i !== -1) answer += "O";
-    else answer += "X";
+  let temp = [...new Array(n)].fill("O");
+  for (let i of deleted) {
+    temp[i] = "X";
   }
+  answer = temp.join("");
+  // for (let i of li) {
+  //   if (i !== -1) answer += "O";
+  //   else answer += "X";
+  // }
 
   return answer;
 }
