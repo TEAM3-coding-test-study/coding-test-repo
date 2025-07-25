@@ -1,6 +1,7 @@
 function solution(orders, course) {
   const answer = [];
   const menuMap = {};
+
   for (const order of orders) {
     const items = order.split("").sort();
     for (const c of course) {
@@ -27,11 +28,6 @@ function solution(orders, course) {
   }
 
   return answer.sort();
-}
-
-function getCombinations(arr, selectNum) {
-  const result = [];
-  if (selectNum === 1) return arr.map((v) => [v]);
 }
 
 function getCombinations(arr, selectNum) {
