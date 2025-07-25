@@ -20,7 +20,6 @@ class Queue {
 
 function solution(n, k) {
   const q = new Queue();
-  let removed;
 
   for (let i = 0; i < n; i++) q.push(i);
 
@@ -29,7 +28,7 @@ function solution(n, k) {
       const popped = q.pop();
       q.push(popped);
     }
-    removed = q.pop();
+    q.pop();
   }
   return q.pop() + 1;
 }
