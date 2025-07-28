@@ -20,7 +20,6 @@ for (let i = 0; i < next.length - 1; i++) {
     }
     cur = next[cur];
   }
-  //   console.log(cur + 1);
   next[prev] = next[cur];
   if (i === next.length - 2) {
     answer = prev + 1;
