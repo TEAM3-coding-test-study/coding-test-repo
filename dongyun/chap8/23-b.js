@@ -5,7 +5,7 @@ function solution(genres, plays) {
 
     for (let i = 0; i < genres.length; i++) {
         if (obj[genres[i]] === undefined) {
-            const d = [0]
+            const d = [plays[i]]
             obj[genres[i]] = d;
             // 첫번째 원소는 누적 plays
             obj[genres[i]].push(i);
@@ -26,36 +26,33 @@ function solution(genres, plays) {
     arr.sort((a, b) => b - a);
 
     for (const g of arr) {
-        console.log("g : ", g);
         const songs = obj[genreOrder[g]]
         const top2 = {};
-        let fir = -1;
-        let sec = -1;
+        let fir = -1; //1등 고유번호
+        let sec = -2; //2등 고유번호
+        top2[fir] = -10; //1등 재생횟수
+        top2[sec] = -12; //2등 재생횟수
+        
         for (let i = 1; i < songs.length; i++) {
-            console.log("songs[i] : ", songs[i]);
-            if (plays[songs[i]] > fir) {
+            if (plays[songs[i]] > top2[fir]) {
                 //밀려난 1등이 2등보다 큰지 검증
-                if (plays[songs[i]] > sec) {
-                    sec = plays[songs[i]];
-                    top2[sec] = songs[i];
-                    continue;
+                if (top2[fir] > top2[sec]) {                   
+                    sec = fir;
+                    top2[sec] = top2[fir];
                 }
-
                 //1등 노래 갱신
-                fir = plays[songs[i]];
-                top2[fir] = songs[i];
-                console.log(top2[fir])
-                continue;
+                fir = songs[i];
+                top2[fir] = plays[songs[i]];
             }
-            else if (plays[songs[i]] > sec) {
-                sec = plays[songs[i]];
-                top2[sec] = songs[i];
-                continue;
+            else if (plays[songs[i]] > top2[sec]) {
+                //2등 노래 갱신
+                sec = songs[i];
+                top2[sec] = plays[songs[i]];
             }
         }
-        answer.push(top2[fir])
-        if (top2[sec] !== -1 && top2[sec] !== null)
-            answer.push(top2[sec]);
+        answer.push(fir)
+        if (top2[sec] > -1 && top2[sec] !== null)
+            answer.push(sec);
     }
 
     return answer;
