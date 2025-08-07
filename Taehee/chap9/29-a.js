@@ -3,7 +3,7 @@ function solution(enroll, referral, seller, amount) {
   const parent = {};
   const profit = new Array(enroll.length).fill(0);
 
-  // 이름 → 인덱스 매핑 및 추천인 저장
+  // 이름 -> 인덱스 매핑 및 추천인 저장
   enroll.forEach((name, i) => {
     nameToIdx[name] = i;
     parent[name] = referral[i];
