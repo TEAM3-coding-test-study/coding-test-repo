@@ -1,0 +1,12 @@
+function solution(phone_book) {
+  for (let i = 0; i < phone_book.length; i++) {
+    for (let j = 0; j < phone_book.length; j++) {
+      if (i === j) continue;
+
+      if (phone_book[j].startsWith(phone_book[i])) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
