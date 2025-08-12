@@ -120,3 +120,5 @@ function solution(maps) {
 
 console.log(solution(["SOOOE", "XXXXO", "OOOOO", "OXXXX", "OOOOL"]));
 // console.log(solution(["LOOXS", "OOOOX", "OOOOO", "OOOOO", "EOOOO"]));
+
+//실패
