@@ -23,7 +23,7 @@ function solution(N, road, K) {
   for (let r = 0; r < N - 1; r++) {
     let ent = hash.get(cur);
     visited.add(cur);
-    mindist = 50000;
+    mindist = 500000;
     for (let [e, w] of ent) {
       if (dist[e - 1] === -1 || dist[e - 1] > dist[cur - 1] + w) {
         dist[e - 1] = dist[cur - 1] + w;
