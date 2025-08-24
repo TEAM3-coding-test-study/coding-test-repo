@@ -41,6 +41,7 @@ function solution(board) {
     console.log("y증가");
     return [y + 1, 0];
   };
+  
   const checkCol = (newBoard, y, x, num) => {
     // console.log(JSON.parse(JSON.stringify(newBoard)));
     for (let i = 0; i <= MAX_INDEX; i++) {
