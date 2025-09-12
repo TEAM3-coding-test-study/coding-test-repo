@@ -1,0 +1,2 @@
+
+      fibodata[n] = 1;
