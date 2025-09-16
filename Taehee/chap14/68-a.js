@@ -1,3 +1,11 @@
 function solution(n) {
-  return n.toString(2).split("1").length - 1;
+  let answer = 0;
+  while (n > 0) {
+    if (n % 2 === 1) {
+      answer++;
+      n--;
+    }
+    n = n / 2;
+  }
+  return answer;
 }
