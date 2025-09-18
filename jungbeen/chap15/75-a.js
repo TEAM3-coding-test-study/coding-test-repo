@@ -1,5 +1,4 @@
 function solution(triangle) {
-  var answer = 0;
   const dp = triangle.map((t) => [...t].fill(0));
   dp[0][0] = triangle[0][0];
 

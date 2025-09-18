@@ -1,5 +1,4 @@
 function solution(land) {
-  var answer = 0;
   const dp = Array.from({ length: land.length }, () => Array(4).fill(0));
 
   for (let i = 0; i < 4; i++) {
