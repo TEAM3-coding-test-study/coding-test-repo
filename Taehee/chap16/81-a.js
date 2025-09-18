@@ -1,22 +1,46 @@
-function solution(amount) {
-  let answer = [];
-  while (Math.floor(amount / 100) > 0) {
-    answer.push(100);
-    amount -= 100;
+function solution(items, weight_limit) {
+  const m = items.length;
+  let answer = 0;
+  const value = new Array(m).fill(0);
+  for (let i = 0; i < m; i++) {
+    value[i] = items[i][1] / items[i][0];
   }
-  while (Math.floor(amount / 50) > 0) {
-    answer.push(50);
-    amount -= 50;
+  items.sort((a, b) => {
+    return b[1] / b[0] - a[1] / a[0];
+  });
+
+  for (const [w, v] of items) {
+    if (weight_limit === 0) break;
+
+    if (w <= weight_limit) {
+      answer += v;
+      weight_limit -= w;
+    } else {
+      answer += v * (weight_limit / w);
+      weight_limit = 0;
+    }
   }
-  while (Math.floor(amount / 10) > 0) {
-    answer.push(10);
-    amount -= 10;
-  }
-  while (amount > 0) {
-    answer.push(1);
-    amount -= 1;
-  }
+
   return answer;
 }
-console.log(solution(123));
-console.log(solution(350));
+
+console.log(
+  solution(
+    [
+      [10, 19],
+      [7, 10],
+      [6, 10],
+    ],
+    15
+  )
+);
+console.log(
+  solution(
+    [
+      [10, 60],
+      [20, 100],
+      [30, 120],
+    ],
+    50
+  )
+);
