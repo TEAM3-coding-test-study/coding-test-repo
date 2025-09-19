@@ -14,7 +14,14 @@ function solution(arr){
         }
     }
 
-    return answer;
+     for (let i = 1; i < n; i++) {
+    dp[0][i] = arr[0][i] + Math.max(dp[1][i - 1], dp[2][i - 1]);
+    dp[1][i] = arr[1][i] + Math.max(dp[0][i - 1], dp[2][i - 1], dp[3][i - 1]);
+    dp[2][i] = arr[2][i] + Math.max(dp[0][i - 1], dp[1][i - 1]);
+    dp[3][i] = arr[0][i] + arr[2][i] + dp[1][i - 1];
+  }
+
+  return Math.max(...dp.map((row) => row[n - 1]));
 }
 
 
