@@ -19,3 +19,4 @@ function solution(people, limit) {
   }
   return answer;
 }
+// 효율성 1개만 통과
